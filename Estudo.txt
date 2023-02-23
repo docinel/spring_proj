@@ -1,0 +1,6 @@
+Foram criadas as Classes:
+Pessoa, Tecnico, Cliente
+Dentro da Classe Pessoa utilizamos os construtores Get and Setters para instanciar os objetos.
+As Classes Tecnico e Cliente extenderam a Classe Pessoa.
+************************************************************************************************
+Tipos Enumerados
