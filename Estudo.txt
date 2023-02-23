@@ -1,4 +1,4 @@
-Foram criadas as Classes:
+Foram criadas as Classes de Domínio:
 Pessoa, Tecnico, Cliente
 Dentro da Classe Pessoa utilizamos os construtores Get and Setters para instanciar os objetos.
 As Classes Tecnico e Cliente extenderam a Classe Pessoa.
