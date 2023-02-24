@@ -2,10 +2,21 @@ package com.docinel.os.domain;
 
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class Pessoa {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@CPF
 	private String cpf;
 	private String telefone;
 	

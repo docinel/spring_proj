@@ -5,26 +5,49 @@ import java.util.Objects;
 
 import com.docinel.os.domain.enuns.Prioridade;
 import com.docinel.os.domain.enuns.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class OS {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataAbertura;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataFechamento;
+	
 	private Integer prioridade;
 	private String observacoes;
 	private Integer status;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Tecnico tecnico;
+	
+	@ManyToOne
+	@JoinColumn(name = "tecnico_id")
 	private Cliente cliente;
 	public OS() {
 		super();
+		this.setDataAbertura(LocalDateTime.now());
+		this.setPrioridade(Prioridade.BAIXA);
+		this.setStatus(Status.ABERTO);
 	}
-	public OS(Integer id, LocalDateTime dataAbertura, LocalDateTime dataFechamento, Prioridade prioridade,
+	public OS(Integer id, Prioridade prioridade,
 			String observacoes, Status status, Tecnico tecnico, Cliente cliente) {
 		super();
 		this.id = id;
-		this.dataAbertura = dataAbertura;
-		this.dataFechamento = dataFechamento;
+		this.setDataAbertura(LocalDateTime.now());
 		this.prioridade = (prioridade == null) ? 0 : prioridade.getCod();
 		this.observacoes = observacoes;
 		this.status = (status == null) ? 0 : status.getCod();
